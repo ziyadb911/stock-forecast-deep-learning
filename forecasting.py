@@ -146,7 +146,7 @@ class Forecasting:
                         
                         model.compile(
                             loss="mse",
-                            optimizer=tf.keras.optimizers.Adam(
+                            optimizer=tf.keras.optimizers.legacy.Adam(
                                 learning_rate=1e-3, decay=1e-3),
                             metrics=[tf.keras.metrics.MeanAbsolutePercentageError(),
                                     tf.keras.metrics.MeanAbsoluteError(),
@@ -242,9 +242,9 @@ if __name__ == '__main__':
     parser.add_argument("--list_of_code", action='store_true',
                         help="Stock Issuer Available")
     parser.add_argument("--type", type=int,
-                        default=0, help="List of type: 0: Univariate; 1: Multivariate;")
+                        default=1, help="List of type: 0: Univariate; 1: Multivariate;")
     parser.add_argument("--lookback", type=str, default='5',
-                        help="List of lookback: 5, 10, 20, 50, 100, 200")
+                        help="List of lookback: 5, 10, 15, 20, 25")
     parser.add_argument("--scaler", type=str, default='standard',
                         help="List of scaler: standard; min_max")
     parser.add_argument("--batch_size", type=int,
@@ -254,6 +254,6 @@ if __name__ == '__main__':
     parser.add_argument("--callbacks", type=int,
                         default=0, help="Callbacks (Early Stopping & Model Checkpoint) 0: False; 1: True")
     parser.add_argument(
-        "--model", type=str, default='TFCNN', help="TFCNN; TFCNNLSTM; TFCNNGRU; \nTFGRU; TFGRUCNN; TFGRULSTM; \nTFLSTM; TFLSTMCNN; TFLSTMGRU; \nTFGCNGRU; TFGCNLSTM")
+        "--model", type=str, default='TFGRU', help="TFCNN; TFCNNLSTM; TFCNNGRU; \nTFGRU; TFGRUCNN; TFGRULSTM; \nTFLSTM; TFLSTMCNN; TFLSTMGRU; \nTFGCNGRU; TFGCNLSTM")
     args = parser.parse_args()
     main(args)

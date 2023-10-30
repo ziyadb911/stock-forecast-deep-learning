@@ -64,7 +64,7 @@ class preprocessing:
     def dataset_cleaning(self, dataset):
         # cleaning column, remove column if NA > 5%
         column_remove = []
-        for (columnName, columnData) in tqdm(dataset.iteritems(), desc="Dataset cleaning"):
+        for (columnName, columnData) in tqdm(dataset.items(), desc="Dataset cleaning"):
             percentage_na = dataset[columnName].isna(
             ).sum()/len(dataset)
             percentage_zero = (

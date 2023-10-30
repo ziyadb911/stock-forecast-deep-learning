@@ -1,0 +1,4 @@
+# Stock price forecasting in Indonesia stock exchange using deep learning: a comparative study
+Our suggested method is used to evaluate the performance of a number of layers, including Convolutional Neural Networks (CNN), Gated Recurrent Units (GRU), Long Short-Term Memory (LSTM), and Graph Convolutional Networks (GCN). By merging these four layer types, we produce a total of 11 designs, each with a maximum of two stacked layers. Then, the effectiveness of various architectural arrangements is contrasted in terms of their propensity to forecast stock prices. 2,588,451 rows of data from 727 companies registered on the Indonesia Stock Exchange (IDX) make up the dataset that was used. It includes information about transactions including open, highest, lowest, and closing prices as well as trading volume.
+
+Accepted paper in the International Journal of Electrical and Computer Engineering (IJECE).

@@ -1,0 +1,7 @@
+.vscode/
+*.xlsx
+*.pyc
+*.h5
+*.hdf
+*.zip
+*__pycache__*

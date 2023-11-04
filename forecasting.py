@@ -236,24 +236,28 @@ def main(args):
 
 
 if __name__ == '__main__':
-    parser = ArgumentParser()
-    parser.add_argument("--code", type=str, default='All',
-                        help="All; GOTO; BBCA, BBRI, BMRI; View with command --list_of_code")
-    parser.add_argument("--list_of_code", action='store_true',
-                        help="Stock Issuer Available")
-    parser.add_argument("--type", type=int,
-                        default=1, help="List of type: 0: Univariate; 1: Multivariate;")
-    parser.add_argument("--lookback", type=str, default='5',
-                        help="List of lookback: 5, 10, 15, 20, 25")
-    parser.add_argument("--scaler", type=str, default='standard',
-                        help="List of scaler: standard; min_max")
-    parser.add_argument("--batch_size", type=int,
-                        default=128, help="Number of batch size")
-    parser.add_argument("--epoch", type=int,
-                        default=150, help="Number of epoch")
-    parser.add_argument("--callbacks", type=int,
-                        default=0, help="Callbacks (Early Stopping & Model Checkpoint) 0: False; 1: True")
-    parser.add_argument(
-        "--model", type=str, default='TFGRU', help="TFCNN; TFCNNLSTM; TFCNNGRU; \nTFGRU; TFGRUCNN; TFGRULSTM; \nTFLSTM; TFLSTMCNN; TFLSTMGRU; \nTFGCNGRU; TFGCNLSTM")
-    args = parser.parse_args()
-    main(args)
+    list_model = ['TFGRU', 'TFLSTM', 'TFGRULSTM', 'TFLSTMGRU']
+    list_lookback = ['5', '10']
+    for model_used in list_model:
+        for lookback_used in list_lookback:
+            parser = ArgumentParser()
+            parser.add_argument("--code", type=str, default='All',
+                                help="All; AAPL; MSFT, AMZN, NVDA; View with command --list_of_code")
+            parser.add_argument("--list_of_code", action='store_true',
+                                help="Stock Issuer Available")
+            parser.add_argument("--type", type=int,
+                                default=1, help="List of type: 0: Univariate; 1: Multivariate;")
+            parser.add_argument("--lookback", type=str, default=lookback_used,
+                                help="List of lookback: 5, 10, 15, 20, 25")
+            parser.add_argument("--scaler", type=str, default='standard',
+                                help="List of scaler: standard; min_max")
+            parser.add_argument("--batch_size", type=int,
+                                default=128, help="Number of batch size")
+            parser.add_argument("--epoch", type=int,
+                                default=150, help="Number of epoch")
+            parser.add_argument("--callbacks", type=int,
+                                default=0, help="Callbacks (Early Stopping & Model Checkpoint) 0: False; 1: True")
+            parser.add_argument(
+                "--model", type=str, default=model_used, help="TFCNN; TFCNNLSTM; TFCNNGRU; \nTFGRU; TFGRUCNN; TFGRULSTM; \nTFLSTM; TFLSTMCNN; TFLSTMGRU; \nTFGCNGRU; TFGCNLSTM")
+            args = parser.parse_args()
+            main(args)

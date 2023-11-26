@@ -104,7 +104,7 @@ class Forecasting:
                     np.random.seed(fix_seed)
                     
                     dataset = historical
-                    prediction_days = int(len(dataset) * 0.2)
+                    prediction_days = 1000
 
                     print('\n############# Preprocessing split data train and test...')
                     if self.type == 0:
@@ -237,7 +237,9 @@ def main(args):
 
 if __name__ == '__main__':
     list_model = ['TFGRU', 'TFLSTM', 'TFGRULSTM', 'TFLSTMGRU']
-    list_lookback = ['5', '10']
+    # list_model = ['TFGRU']
+    # list_lookback = ['5']
+    list_lookback = ['5', '10', '15', '20', '25']
     for model_used in list_model:
         for lookback_used in list_lookback:
             parser = ArgumentParser()
@@ -249,14 +251,14 @@ if __name__ == '__main__':
                                 default=1, help="List of type: 0: Univariate; 1: Multivariate;")
             parser.add_argument("--lookback", type=str, default=lookback_used,
                                 help="List of lookback: 5, 10, 15, 20, 25")
-            parser.add_argument("--scaler", type=str, default='standard',
+            parser.add_argument("--scaler", type=str, default='min_max',
                                 help="List of scaler: standard; min_max")
             parser.add_argument("--batch_size", type=int,
-                                default=128, help="Number of batch size")
+                                default=512, help="Number of batch size")
             parser.add_argument("--epoch", type=int,
-                                default=150, help="Number of epoch")
+                                default=100, help="Number of epoch")
             parser.add_argument("--callbacks", type=int,
-                                default=0, help="Callbacks (Early Stopping & Model Checkpoint) 0: False; 1: True")
+                                default=1, help="Callbacks (Early Stopping & Model Checkpoint) 0: False; 1: True")
             parser.add_argument(
                 "--model", type=str, default=model_used, help="TFCNN; TFCNNLSTM; TFCNNGRU; \nTFGRU; TFGRUCNN; TFGRULSTM; \nTFLSTM; TFLSTMCNN; TFLSTMGRU; \nTFGCNGRU; TFGCNLSTM")
             args = parser.parse_args()

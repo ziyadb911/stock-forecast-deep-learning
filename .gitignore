@@ -5,3 +5,4 @@
 *.hdf
 *.zip
 *__pycache__*
+results-backup
